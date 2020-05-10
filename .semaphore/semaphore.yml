@@ -14,12 +14,9 @@ blocks:
             - cache restore
             - composer install
             - cache store
-  - name: DB setup
+  - name: Code analysis
     task:
       jobs:
-        - name: migrate
+        - name: Mess Detect
           commands:
-            - 'php artisan migrate:refresh'
-        - name: seed
-          commands:
-            - 'php artisan db:seed'
+            - php vendor/bin/phpmd routes json phpmd_rules.xml
